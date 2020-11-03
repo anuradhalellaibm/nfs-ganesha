@@ -596,13 +596,6 @@ install -m 644 config_samples/gpfs.ganesha.exports.conf	%{buildroot}%{_sysconfdi
 
 make DESTDIR=%{buildroot} install
 
-%if ( 0%{?fedora} >= 30 || 0%{?rhel} >= 8 )
-install -d %{buildroot}%{_selinux_store_path}/packages
-install -d -p %{buildroot}%{_selinux_store_path}/devel/include/contrib
-install -p -m 644 selinux/ganesha.if %{buildroot}%{_selinux_store_path}/devel/include/contrib
-install -m 0644 selinux/ganesha.pp.bz2 %{buildroot}%{_selinux_store_path}/packages
-%endif
-
 %if ( 0%{?rhel} && 0%{?rhel} < 8 )
 rm -f %{buildroot}/%{python_sitelib}/gpfs*
 rm -f %{buildroot}/%{python_sitelib}/__init__.*
@@ -783,12 +776,6 @@ exit 0
 %if %{with man_page}
 %{_mandir}/*/ganesha-gluster-config.8.gz
 %endif
-%endif
-
-%if ( 0%{?fedora} >= 30 || 0%{?rhel} >= 8 )
-%files selinux
-%attr(0644,root,root) %{_selinux_store_path}/packages/ganesha.pp.bz2
-%attr(0644,root,root) %{_selinux_store_path}/devel/include/contrib/ganesha.if
 %endif
 
 %if ! %{with system_ntirpc}
