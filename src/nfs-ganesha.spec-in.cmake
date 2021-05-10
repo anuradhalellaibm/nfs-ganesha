@@ -187,10 +187,6 @@ Requires(post): psmisc
 Requires(pre): /usr/sbin/useradd
 Requires(pre): /usr/sbin/groupadd
 
-%if ( 0%{?fedora} >= 30 || 0%{?rhel} >= 8 )
-Requires: nfs-ganesha-selinux = %{version}-%{release}
-%endif
-
 # Use CMake variables
 
 %description
